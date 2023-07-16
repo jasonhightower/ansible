@@ -1,0 +1,12 @@
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update APT Cache
+      apt: 
+        update_cache: true
+      tags:
+        - zsh
+        - python
+  tasks:
+    - include: tasks/zsh.yml
+    - include: tasks/python.yml

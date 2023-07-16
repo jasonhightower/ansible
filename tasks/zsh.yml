@@ -1,0 +1,11 @@
+ - name: Intall zsh
+   apt: name=zsh
+ - name: Change shell
+   shell: chsh -s `which zsh`
+   tags:
+     - zsh
+ - name: Add Deadsnakes PPA
+   ansible.builtin.apt_repository:
+     repo: ppa:deadsnakes/ppa 
+   tags:
+     - zsh
