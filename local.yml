@@ -1,12 +1,30 @@
 - hosts: localhost
-  become: true
+  vars:
+    user_name: "root"
+#    user_name: "{{ lookup('env', 'USER') | default('root') }}"
+    target_dir: "{{ lookup('env', 'HOME') }}/adobe/"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    dest_key_dir: "{{ lookup('env', 'HOME') }}/.ssh/"
+    source_key_dir: "./.ssh/"
   pre_tasks:
-    - name: Update APT Cache
-      apt: 
-        update_cache: true
-      tags:
-        - zsh
-        - python
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    tags:
+      - install
+      - core
   tasks:
+    - include: tasks/ssh.yml
+    - include: tasks/npm.yml
     - include: tasks/zsh.yml
-    - include: tasks/python.yml
+    - include: tasks/nvim.yml
+    - include: tasks/dotfiles.yml
+    - include: tasks/java.yml
+      #    - include: tasks/pyenv.yml
+      #    - include: tasks/python.yml
+      #    - include: tasks/jupyterlab.yml
+      #    - include: tasks/aepp.yml
+      #    - include: tasks/cmle.yml
