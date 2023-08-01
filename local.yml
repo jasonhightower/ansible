@@ -23,6 +23,7 @@
     - include: tasks/nvim.yml
     - include: tasks/dotfiles.yml
     - include: tasks/java.yml
+    - include: tasks/go.yml
       #    - include: tasks/pyenv.yml
       #    - include: tasks/python.yml
       #    - include: tasks/jupyterlab.yml

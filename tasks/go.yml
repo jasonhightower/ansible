@@ -1,0 +1,6 @@
+- name: Install go
+  package:
+    name: ["go"]
+  tags:
+    - go
+    - install
