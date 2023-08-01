@@ -1,11 +1,19 @@
- - name: Intall zsh
-   apt: name=zsh
- - name: Change shell
-   shell: chsh -s `which zsh`
-   tags:
-     - zsh
- - name: Add Deadsnakes PPA
-   ansible.builtin.apt_repository:
-     repo: ppa:deadsnakes/ppa 
-   tags:
-     - zsh
+- name: Install zsh
+  apt: name=zsh
+  tags: &tags_for_zsh_tasks [ 'install', 'dotfiles', 'zsh' ]
+
+- name: Change shell to zsh
+  shell: chsh -s $(which zsh)
+  tags: *tags_for_zsh_tasks
+
+- name: Check if oh-my-zsh is installed
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+  register: oh_my_stats
+  tags: *tags_for_zsh_tasks
+
+- name: Install oh-my-zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  tags: *tags_for_zsh_tasks
+  when: oh_my_stats.stat.exists == False
+#  become_user: jasonh

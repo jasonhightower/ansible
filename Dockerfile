@@ -11,11 +11,11 @@ RUN apt-get update && \
     apt-get autoremove --yes
 
 #FROM base as prime
-#ARG TAGS
 #RUN addgroup --gid 1000 jasonh
 #RUN adduser --gecos jasonh --uid 1000 -gid 1000 --disabled-password jasonh
 #USER jasonh
 #WORKDIR /home/jasonh
+
 
 #FROM prime
 #COPY . .

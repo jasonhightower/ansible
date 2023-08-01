@@ -1,0 +1,8 @@
+- name: Install npm
+  become: true
+  apt:
+    name: ["npm"]
+  tags:
+    - install
+    - npm
+    - node

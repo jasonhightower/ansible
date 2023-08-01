@@ -1,0 +1,3 @@
+- name: Install JupyterLab
+  ansible.builtin.pip:
+    name: jupyterlab

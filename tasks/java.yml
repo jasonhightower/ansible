@@ -1,0 +1,16 @@
+- name: Install Java 8
+  apt: 
+    pkg:
+      - openjdk-8-jdk
+      - openjdk-11-jdk
+        #      - openjdk-18-jdk
+  tags:
+    - install
+    - java
+    - dsw
+- name: Install Maven
+  apt: name=maven
+  tags:
+    - install
+    - java
+    - dsw
