@@ -1,8 +1,9 @@
 - name: Install npm
-  become: true
-  apt:
+  #  become: true
+  package:
     name: ["npm"]
   tags:
     - install
     - npm
     - node
+    - neovim

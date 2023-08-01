@@ -11,7 +11,7 @@
     - install
     - neovim
 - name: Install Neovim
-  apt: name=neovim
+  package: name=neovim
   tags:
     - install
     - neovim

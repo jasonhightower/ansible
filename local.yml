@@ -1,7 +1,7 @@
 - hosts: localhost
   vars:
-    user_name: "root"
-#    user_name: "{{ lookup('env', 'USER') | default('root') }}"
+#    user_name: "root"
+    user_name: "{{ lookup('env', 'USER') | default('root') }}"
     target_dir: "{{ lookup('env', 'HOME') }}/adobe/"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     dest_key_dir: "{{ lookup('env', 'HOME') }}/.ssh/"
